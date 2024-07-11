@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />    <link rel="stylesheet" href="index.css">
+    <title>香城</title>
+</head>
+<body onload="showTab1(1); getUserNum();">
+    <header>
+        <span id="title">香城</span>
+        <nav>
+            <a href="./" class="nav-item">登入</a>
+            <a href="" class="nav-item">管理</a>
+            <span class="nav-item" onclick="showAI()" style="cursor: pointer;">AI幫助</span>
+        </nav>
+    </header>
+
+    <main>
+        <div id="admin">
+            <nav id="mgt-nav">
+                <span class="material-symbols-outlined mgt-nav-item" id="symbol1">settings</span>
+                <span class="mgt-nav-item" style="margin-left: 30px;" onclick="showTab1(1)">Dashboard</span>
+                <span class="mgt-nav-item" onclick="showTab1(2)">Users</span>
+                <span class="mgt-nav-item" onclick="showTab1(3)">Record</span>
+            </nav>
+
+            <div class="horizontal tabs" id="dashboard-div">
+                <nav id="nav-list">
+                    <span id="mgt-tab">Dashboard</span>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(1)">Overview</span></li>
+                </nav>
+                <div class="tab-content">
+                    <div class="tab-content-container" id="overview">
+                        <div id="total-user">
+                            <span id="user-no"></span>
+                            <span class="txt3">Total Users</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="horizontal tabs" id="users-div">
+                <nav id="nav-list">
+                    <span id="mgt-tab">Users</span>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(2)">All Users</span></li>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(3)">New User</span></li>
+                </nav>
+                <div class="tab-content">
+                    <div class="tab-content-container" id="allusers">
+                        <table id="usertb">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Age</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data"></tbody>
+                        </table>
+                    </div>
+                    <div class="tab-content-container" id="newuser">
+                        <label for="fn-input" class="input-hint">Full Name</label>
+                        <input type="text" id="fn-input" style="margin-bottom: 20px;">
+                        <label for="gender-input" class="input-hint">Gender</label>
+                        <input type="text" id="gender-input" style="margin-bottom: 20px;">
+                        <label for="age-input" class="input-hint">Age</label>
+                        <input type="text" id="age-input">
+                        <input type="button" value="Add" id="add-btn" onclick="addUser()" style="margin-bottom: 15px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="horizontal tabs" id="record-div">
+                <nav id="nav-list">
+                    <span id="mgt-tab">Record</span>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(4)">User Records</span></li>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(5)">Activites</span></li>
+                </nav>
+                <div class="tab-content">
+                    <div class="tab-content-container" id="userrecords">records</div>
+                    <div class="tab-content-container" id="activites">activites</div>
+                </div>
+            </div>
+        </div>
+        <div id="aiPrompt">
+            <div class="horizontal" style="justify-content: end; height: fit-content;">
+                <input type="button" value="X" id="closeBtn" onclick="closeAI()">
+            </div>
+            <iframe src="https://poe.com/QOS_elderlyhelper" frameborder="0" title="bruh" id="poe"></iframe>
+        </div>
+    </main>
+
+    <script src="popup.js"></script>
+    <script src="tab.js"></script>
+    <script src="data.js"></script>
+</body>
+</html>

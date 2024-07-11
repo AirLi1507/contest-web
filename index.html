@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <title>香城</title>
+</head>
+<body>
+    <header>
+        <span id="title">香城</span>
+        <nav>
+            <a href="" class="nav-item">登入</a>
+            <a href="admin.html" class="nav-item">管理</a>
+            <span class="nav-item" onclick="showAI()" style="cursor: pointer;">AI幫助</span>
+        </nav>
+    </header>
+
+    <main>
+        <div id="home">
+            <div id="bg-img"><h2 class="txt0">Lorem Ipsum</h2></div>
+            <p class="txt1">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
+        </div>
+        <div id="aiPrompt">
+            <div class="horizontal" style="justify-content: end; height: fit-content;">
+                <input type="button" value="X" id="closeBtn" onclick="closeAI()">
+            </div>
+            <iframe src="https://www.w3schools.com" frameborder="0" title="bruh" id="poe"></iframe>
+        </div>
+
+    </main>
+
+    <script src="popup.js"></script>
+</body>
+</html>
