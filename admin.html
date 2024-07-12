@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />    <link rel="stylesheet" href="index.css">
+    <title>香城</title>
+</head>
+<body onload="showTab1(1); getUserNum();">
+    <header>
+        <img src="images/logo.png" alt="" id="logo"><a id="title" href="index.html">So</a>
+        <nav>
+            <span class="nav-item" style="cursor: pointer;">管理</span>
+            <a href="https://iport.eduairhk.com/" class="nav-item" style="cursor: pointer;" target="_blank">AI看護</a>   
+            <span class="nav-item" onclick="showAI()" style="cursor: pointer;">AI幫助</span>
+        </nav>
+    </header>
+
+    <main>
+        <div id="admin">
+            <nav id="mgt-nav">
+                <span class="material-symbols-outlined mgt-nav-item" id="symbol1">settings</span>
+                <span class="mgt-nav-item" style="margin-left: 30px;" onclick="showTab1(1)">儀表板</span>
+                <span class="mgt-nav-item" onclick="showTab1(2)">使用者</span>
+            </nav>
+
+            <div class="horizontal tabs" id="dashboard-div">
+                <nav id="nav-list">
+                    <span id="mgt-tab">儀表板</span>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(1)">概觀</span></li>
+                </nav>
+                <div class="tab-content">
+                    <div class="tab-content-container" id="overview">
+                        <div id="total-user">
+                            <span id="user-no"></span>
+                            <span class="txt3">使用者總數</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="horizontal tabs" id="users-div">
+                <nav id="nav-list">
+                    <span id="mgt-tab">使用者</span>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(2)">全部</span></li>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(3)">新增</span></li>
+                </nav>
+                <div class="tab-content">
+                    <div class="tab-content-container" id="allusers">
+                        <div id="overflow">
+                            <table id="usertb">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">姓名</th>
+                                        <th scope="col">性別</th>
+                                        <th scope="col">年齡</th>
+                                        <th scope="col">家屬電話號碼</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="data">
+                                    <tr><td scope="row">老陳</td><td>男</td><td>66</td><td>66587422</td></tr>
+                                    <tr><td scope="row">老黃</td><td>男</td><td>71</td><td>65657687</td></tr>
+                                    <tr><td scope="row">小梅</td><td>女</td><td>68</td><td>65677781</td></tr>
+                                    <tr><td scope="row">小青</td><td>女</td><td>72</td><td>67853221</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-content-container" id="newuser">
+                        <label for="fn-input" class="input-hint">姓名</label>
+                        <input type="text" id="fn-input" style="margin-bottom: 20px;">
+                        <label for="gender-input" class="input-hint">性別</label>
+                        <input type="text" id="gender-input" style="margin-bottom: 20px;">
+                        <label for="age-input" class="input-hint">年齡</label>
+                        <input type="number" id="age-input" style="margin-bottom: 20px;">
+                        <label for="num-input" class="input-hint">家屬電話號碼</label>
+                        <input type="number" id="num-input" style="margin-bottom: 20px;">
+                        <input type="button" value="Add" id="add-btn" onclick="addUser()" style="margin-bottom: 15px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="horizontal tabs" id="record-div">
+                <nav id="nav-list">
+                    <span id="mgt-tab">Record</span>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(4)">User Records</span></li>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(5)">Activites</span></li>
+                </nav>
+                <div class="tab-content">
+                    <div class="tab-content-container" id="userrecords">records</div>
+                    <div class="tab-content-container" id="activites">activites</div>
+                </div>
+            </div>
+        </div>
+        <div id="aiPrompt">
+            <div class="horizontal" style="justify-content: end; height: fit-content;">
+                <input type="button" value="X" id="closeBtn" onclick="closeAI()">
+            </div>
+            <iframe src="https://poe.com/QOS_elderlyhelper" frameborder="0" title="bruh" id="poe"></iframe>
+        </div>
+    </main>
+
+    <script src="popup.js"></script>
+    <script src="tab.js"></script>
+    <script src="data.js"></script>
+</body>
+</html>
