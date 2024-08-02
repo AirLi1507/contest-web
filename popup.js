@@ -15,3 +15,5 @@ function closeAI() {
     popup.style.display = "none";
     }, 200);
 }
+
+/* This script is abandoned as Poe dropped support for iframe embeds */

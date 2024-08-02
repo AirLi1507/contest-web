@@ -13,7 +13,7 @@ function getUserNum() {
 
 var diseaseList = ['高血壓', '糖尿病', '心臟病', '阿茲海默症'];
 
-var medicalList = ['降壓藥', '胰島素', '降膽固醇藥', '多奈哌齊'];
+var medicalList = ['ACE抑制劑', '胰島素', '降膽固醇藥', '多奈哌齊'];
 
 var peopleList = ['老陳', '老黃', '小梅', '小青'];
 

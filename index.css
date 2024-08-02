@@ -77,7 +77,7 @@ nav {
 }
 
 .nav-item {
-    color: #49483e;
+    color: #ffffff;
     font-size: 26px;
     font-weight: 550;
     letter-spacing: -0.75px;
@@ -87,7 +87,7 @@ nav {
 }
 
 .nav-item:hover {
-    color: #537e7c;
+    color: #abf0ec;
     text-decoration: underline;
 }
 
@@ -433,7 +433,7 @@ input {
     cursor: pointer;
 }
 
-#disease-select, .selectConfirm {
+#disease-select, #medical-select, .selectConfirm {
     font-size: 18px;
 
     width: fit-content;
