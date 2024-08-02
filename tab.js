@@ -12,7 +12,7 @@ function showTab1(tab_id) {
         $('.tabs').hide();
         document.getElementById('record-div').style.display = "flex";
         showTab2(4);
-        loadData();
+        loadData1();
     }
 }
 
@@ -31,8 +31,10 @@ function showTab2(tab_id2) {
     } else if (tab_id2 == 4) {
         $(tabs2).hide();
         document.getElementById('userrecords').style.display = "flex";
+        loadData1();
     } else if (tab_id2 == 5) {
         $(tabs2).hide();
         document.getElementById('activites').style.display = "flex";
+        loadData2();
     }
 }

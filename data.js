@@ -1,9 +1,11 @@
 const tbody = document.getElementById('data');
 const select1 = document.getElementById('disease-select');
-const selectConfirm1 = document.getElementById('selectConfirm1');
+const select2 = document.getElementById('medical-select');
 
 const diseaseInfo = document.getElementById('data1');
-const medicalInfo = document.getElementById('data2');
+const medicalInfo = document.querySelectorAll('.data2');
+
+const medicalTime = document.getElementById('data3');
 
 let userNum = 4;
 function getUserNum() {
@@ -12,8 +14,8 @@ function getUserNum() {
 }
 
 var diseaseList = ['高血壓', '糖尿病', '心臟病', '阿茲海默症'];
-
 var medicalList = ['ACE抑制劑', '胰島素', '降膽固醇藥', '多奈哌齊'];
+var takingTimesList = ['4','3','2','3'];
 
 var peopleList = ['老陳', '老黃', '小梅', '小青'];
 
@@ -26,8 +28,7 @@ function addUser() {
     let no = document.getElementById('num-input').value;
     let disease = document.getElementById('disease-input').value;
     let medical = document.getElementById('medical-input').value;
-    /*let takeTime = document.getElementById('time-input').value;*/
-    
+    let takeTime = document.getElementById('time-input').value;
 
     peopleList.push(name);
     console.log(peopleList);
@@ -36,28 +37,37 @@ function addUser() {
     var lastPersonIndex = peopleList.length - 1;
     console.log(lastPerson);
 
-    var newPpl = `<option value="` + lastPersonIndex + `">` + lastPerson + `</option>`;
+    var newPpl = `<option value="${lastPersonIndex}">${lastPerson}</option>`;
     select1.innerHTML = select1.innerHTML + newPpl;
+    select2.innerHTML = select2.innerHTML + newPpl;
 
     diseaseList.push(disease);
-    console.log(disease);
 
     medicalList.push(medical);
-    console.log(medicalList[lastPersonIndex])
+
+    takingTimesList.push(takeTime);
     
-    var addTr = `<tr><td scope="row">` + name + `</td><td>` + gender + `</td><td>` + age + `</td><td>` + no + `</td></tr>`;
-    console.log(addTr);
+    var addTr = `<tr><td scope="row">${name}</td><td>${gender}</td><td>${age}</td><td>${no}</td></tr>`;
     tbody.innerHTML = tbody.innerHTML + addTr;
     userNum++;
 }
 
 $('select').on('change', function(){
-    loadData();
+    loadData1();
+    loadData2();
 })
 
-function loadData() {
-    index1 = select1.selectedIndex;
+function loadData1() {
+    index = select1.selectedIndex;
 
-    data1.innerHTML = diseaseList[index1];
-    data2.innerHTML = medicalList[index1];
+    $('#data1').html(diseaseList[index]);
+    $('#data2').html(medicalList[index]);
+}
+
+
+function loadData2() {
+    index = select2.selectedIndex;
+
+    $('#data3').html(medicalList[index]);
+    $('#data4').html(`一天 ${takingTimesList[index]} 次`);
 }
