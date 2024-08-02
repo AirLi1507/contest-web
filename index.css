@@ -44,7 +44,7 @@ header {
     align-items: center;
     height: 90px;
     width: 100%;
-    background: linear-gradient(to right, orange, #fbff00);
+    background: linear-gradient(to right, rgb(126, 231, 255), #0036c8);
 }
 
 #logo {
@@ -81,11 +81,11 @@ nav {
     letter-spacing: -0.75px;
     text-decoration: underline transparent;
     text-underline-offset: 0.3em;
-    transition: 0.3s ease;
+    transition: 0.25s ease;
 }
 
 .nav-item:hover {
-    color: #888777;
+    color: #537e7c;
     text-decoration: underline;
 }
 
