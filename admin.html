@@ -26,6 +26,7 @@
                 <span class="material-symbols-outlined mgt-nav-item" id="symbol1">settings</span>
                 <span class="mgt-nav-item" style="margin-left: 30px;" onclick="showTab1(1)">儀表板</span>
                 <span class="mgt-nav-item" onclick="showTab1(2)">使用者</span>
+                <span class="mgt-nav-item" onclick="showTab1(3)">數據庫</span>
             </nav>
 
             <div class="horizontal tabs" id="dashboard-div">
@@ -72,27 +73,45 @@
                     </div>
                     <div class="tab-content-container" id="newuser">
                         <label for="fn-input" class="input-hint">姓名</label>
-                        <input type="text" id="fn-input" style="margin-bottom: 20px;">
+                        <input type="text" id="fn-input" class="input-fleids">
                         <label for="gender-input" class="input-hint">性別</label>
-                        <input type="text" id="gender-input" style="margin-bottom: 20px;">
+                        <input type="text" id="gender-input" class="input-fleids">
                         <label for="age-input" class="input-hint">年齡</label>
-                        <input type="number" id="age-input" style="margin-bottom: 20px;">
+                        <input type="number" id="age-input" class="input-fleids">
                         <label for="num-input" class="input-hint">家屬電話號碼</label>
-                        <input type="number" id="num-input" style="margin-bottom: 20px;">
-                        <input type="button" value="Add" id="add-btn" onclick="addUser()" style="margin-bottom: 15px;">
+                        <input type="number" id="num-input" class="input-fleids">
+                        <label for="disease-input" class="input-hint">疾病</label>
+                        <input type="text" id="disease-input" class="input-fleids">
+                        <label for="medical-input" class="input-hint">藥物</label>
+                        <input type="text" id="medical-input" class="input-fleids">
+                        <input type="button" value="Add" id="add-btn" onclick="addUser()" style="margin-top: 20px; padding: 6px 0;">
                     </div>
                 </div>
             </div>
 
             <div class="horizontal tabs" id="record-div">
                 <nav id="nav-list">
-                    <span id="mgt-tab">Record</span>
-                    <li class="tab-list"><span class="tab-span" onclick="showTab2(4)">User Records</span></li>
-                    <li class="tab-list"><span class="tab-span" onclick="showTab2(5)">Activites</span></li>
+                    <span id="mgt-tab">數據庫</span>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(4)">病歷</span></li>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(5)">服藥時間</span></li>
                 </nav>
                 <div class="tab-content">
-                    <div class="tab-content-container" id="userrecords">records</div>
-                    <div class="tab-content-container" id="activites">activites</div>
+                    <div class="tab-content-container" id="userrecords" style="flex-direction: column;">
+                        <span class="title3">病歷</span>
+                        <select id="disease-select">
+                            <option value="0">老陳</option>
+                            <option value="1">老黃</option>
+                            <option value="2">小梅</option>
+                            <option value="3">小青</option>
+                        </select>
+                        <ul style="width: 100%; padding: 0;">
+                            <li class="title3" style="font-size: 20px; width: 40%; margin-bottom: 40px;">疾病: <span style="font-size: 22px; margin-left: 20px;" id="data1"></span></li>
+                            <li class="title3" style="font-size: 20px; width: 40%;">藥物: <span style="font-size: 22px; margin-left: 20px;" id="data2"></span></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content-container" id="activites">
+                        <span class="title3">服藥時間</span>
+                    </div>
                 </div>
             </div>
         </div>

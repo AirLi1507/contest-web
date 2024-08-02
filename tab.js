@@ -18,6 +18,7 @@ function showTab1(tab_id) {
         }
         document.getElementById('record-div').style.display = "flex";
         showTab2(4);
+        loadData();
     }
 }
 
