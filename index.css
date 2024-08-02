@@ -44,7 +44,7 @@ header {
     align-items: center;
     height: 90px;
     width: 100%;
-    background: linear-gradient(to right, rgb(126, 231, 255), #0036c8);
+    background: linear-gradient(to right, rgb(126, 231, 255), #0033bf);
 }
 
 #logo {
@@ -242,7 +242,7 @@ div.horizontal {
     right: 20px;
     width: 395px;
     height: 450px;
-    background: linear-gradient(to bottom, orange, #ffd000);
+    background: linear-gradient(to right, rgb(126, 231, 255), #0033bf);
     border: 2px solid rgb(236, 236, 236);
     border-radius: 15px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
