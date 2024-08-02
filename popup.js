@@ -5,6 +5,7 @@ function showAI() {
     popup.classList.remove("fade-out");
     popup.style.display = "flex";
     popup.classList.add('fade-in');
+    $('#poe').load("https://www.google.com");
 }
 
 function closeAI() {
