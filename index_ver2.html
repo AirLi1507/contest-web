@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老人院舍推薦</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 90%;
+            /* margin: 20px; */
+            padding: 20px;
+            /* background-color: #f4f4f9; */
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .serviceUnit {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        h2 {
+            font-size: 1.2em;
+            margin: 0 0 10px 0;
+        }
+        p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>老人院舍推薦</h1>
+    <label for="district">選擇地區:</label>
+    <select id="district">
+        <option value="">--選擇地區--</option>
+        <option value="中西區">中西區</option>
+        <option value="東區">東區</option>
+        <option value="南區">南區</option>
+        <option value="灣仔區">灣仔區</option>
+        <option value="九龍城區">九龍城區</option>
+        <option value="觀塘區">觀塘區</option>
+        <option value="深水埗區">深水埗區</option>
+        <option value="黃大仙區">黃大仙區</option>
+        <option value="油尖旺區">油尖旺區</option>
+        <option value="離島區">離島區</option>
+        <option value="葵青區">葵青區</option>
+        <option value="北區">北區</option>
+        <option value="西貢區">西貢區</option>
+        <option value="沙田區">沙田區</option>
+        <option value="大埔區">大埔區</option>
+        <option value="荃灣區">荃灣區</option>
+        <option value="屯門區">屯門區</option>
+        <option value="元朗區">元朗區</option>
+    </select>
+
+    <label for="type">選擇類型:</label>
+    <select id="type">
+        <option value="">--選擇類型--</option>
+        <option value="合約">合約</option>
+        <option value="津助">津助</option>
+        <option value="私營">私營</option>
+    </select>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        async function fetchXML() {
+            try {
+                const response = await fetch('https://www.ves.swd.gov.hk/sites/rrpvs-swd/files/rrse_list.xml');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const xmlText = await response.text();
+                return new window.DOMParser().parseFromString(xmlText, "text/xml");
+            } catch (error) {
+                console.error('Error fetching XML:', error);
+            }
+        }
+
+        function parseXML(xml) {
+            const serviceUnits = xml.getElementsByTagName('serviceUnit');
+            const data = [];
+            for (let unit of serviceUnits) {
+                const nameTChinese = unit.getElementsByTagName('nameTChinese')[0].textContent;
+                const addressTChinese = unit.getElementsByTagName('addressTChinese')[0].textContent;
+                const typeTChinese = unit.getElementsByTagName('typeTChinese')[0].textContent;
+                const districtTChinese = unit.getElementsByTagName('districtTChinese')[0].textContent.trim().replace(';', '');
+                const telephoneNumber = unit.getElementsByTagName('telephoneNumber')[0].textContent;
+                data.push({ nameTChinese, addressTChinese, typeTChinese, districtTChinese, telephoneNumber });
+            }
+            return data;
+        }
+
+        async function init() {
+            const xml = await fetchXML();
+            const data = parseXML(xml);
+
+            document.getElementById('district').addEventListener('change', filterData);
+            document.getElementById('type').addEventListener('change', filterData);
+
+            function filterData() {
+                const selectedDistrict = document.getElementById('district').value;
+                const selectedType = document.getElementById('type').value;
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = '';
+
+                const filteredData = data.filter(item => {
+                    const matchesDistrict = !selectedDistrict || item.districtTChinese === selectedDistrict;
+                    const matchesType = !selectedType || item.typeTChinese.includes(selectedType);
+                    return matchesDistrict && matchesType;
+                });
+
+                if (filteredData.length > 0) {
+                    filteredData.forEach(item => {
+                        resultDiv.innerHTML += `
+                            <div class="serviceUnit">
+                                <h2>${item.nameTChinese}</h2>
+                                <p>地址: ${item.addressTChinese}</p>
+                                <p>類型: ${item.typeTChinese}</p>
+                                <p>電話: ${item.telephoneNumber}</p>
+                            </div>
+                        `;
+                    });
+                } else {
+                    resultDiv.innerHTML = '<p>沒有找到相關的院舍。</p>';
+                }
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

@@ -34,6 +34,7 @@
                 <nav id="nav-list">
                     <span id="mgt-tab">儀表板</span>
                     <li class="tab-list"><span class="tab-span" onclick="showTab2(1)">概觀</span></li>
+                    <li class="tab-list"><span class="tab-span" onclick="showTab2(6)">老人資訊</span></li>
                 </nav>
                 <div class="tab-content">
                     <div class="tab-content-container" id="overview">
@@ -41,6 +42,9 @@
                             <span id="user-no"></span>
                             <span class="txt3">使用者總數</span>
                         </div>
+                    </div>
+                    <div class="tab-content-container" id="userinfo">
+                        <iframe src="index_ver2.html" frameborder="0" width="100%"></iframe>
                     </div>
                 </div>
             </div>
@@ -111,6 +115,8 @@
                             <li class="txt4" style="font-size: 20px; width: 40%; margin-bottom: 40px;">疾病: <span style="font-size: 22px; margin-left: 20px;" id="data1"></span></li>
                             <li class="txt4" style="font-size: 20px; width: 40%;">藥物: <span style="font-size: 22px; margin-left: 20px;" id="data2"></span></li>
                         </ul>
+                        <div class="drug-info"></div>
+
                     </div>
                     <div class="tab-content-container" id="activites" style="flex-direction: column;">
                         <span class="txt4" style="width: 80%;">服藥次數</span>
@@ -120,10 +126,12 @@
                             <option value="2">小梅</option>
                             <option value="3">小青</option>
                         </select>
-                        <span class="txt4" style="font-size: 20px; margin-top: 60px;">
-                            藥物: <span style="font-size: 22px; margin: 0 60px 0 20px" id="data3">1</span>
-                            次數: <span style="font-size: 22px; margin-left: 20px;" id="data4">1</span>
-                        </span>
+                        <div>
+                            <span class="txt4" style="font-size: 20px; margin-top: 60px;">
+                                藥物: <span style="font-size: 22px; margin: 0 60px 0 20px" id="data3">1</span>
+                                次數: <span style="font-size: 22px; margin-left: 20px;" id="data4">1</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

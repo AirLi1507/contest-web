@@ -14,7 +14,7 @@ function getUserNum() {
 }
 
 var diseaseList = ['高血壓', '糖尿病', '心臟病', '阿茲海默症'];
-var medicalList = ['ACE抑制劑', '胰島素', '降膽固醇藥', '多奈哌齊'];
+var medicalList = ['"s.t." natural tears eye drops', 'cocaine hcl eye/nose drops 5%', 'allegro nasal spray 0.05%', 'amoxicillin sodium and clavulanate potassium for inj 0.6g (shandong lukang)'];
 var takingTimesList = ['4','3','2','3'];
 
 var peopleList = ['老陳', '老黃', '小梅', '小青'];
@@ -38,8 +38,8 @@ function addUser() {
     console.log(lastPerson);
 
     var newPpl = `<option value="${lastPersonIndex}">${lastPerson}</option>`;
-    select1.innerHTML = select1.innerHTML + newPpl;
-    select2.innerHTML = select2.innerHTML + newPpl;
+    select1.innerHTML += newPpl;
+    select2.innerHTML += newPpl;
 
     diseaseList.push(disease);
 
@@ -48,7 +48,7 @@ function addUser() {
     takingTimesList.push(takeTime);
     
     var addTr = `<tr><td scope="row">${name}</td><td>${gender}</td><td>${age}</td><td>${no}</td></tr>`;
-    tbody.innerHTML = tbody.innerHTML + addTr;
+    tbody.innerHTML += addTr;
     userNum++;
 }
 
@@ -62,6 +62,77 @@ function loadData1() {
 
     $('#data1').html(diseaseList[index]);
     $('#data2').html(medicalList[index]);
+
+    searchDrug(index)
+}
+
+let cachedXML = null;
+
+async function fetchXML() {
+    if (cachedXML) {
+        console.log('Using cached XML data');
+        return cachedXML;
+    }
+
+    try {
+        const response = await fetch('http://host.hypernix.org:3000/druglist');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const xmlText = await response.text();
+        cachedXML = new window.DOMParser().parseFromString(xmlText, "text/xml");
+        return cachedXML;
+    } catch (error) {
+        console.error('Error fetching XML:', error);
+    }
+}
+
+async function searchDrug(index) {
+    try {
+        const xmlDoc = await fetchXML();
+        if (!xmlDoc) {
+            throw new Error('Failed to load XML document');
+        }
+        console.log('loading')
+        const keyword = medicalList[index];
+        const drugs = xmlDoc.getElementsByTagName('drug');
+        const resultContainer = document.querySelector('.drug-info')
+        resultContainer.innerHTML = '';
+
+        for (let i = 0; i < drugs.length; i++) {
+            const productNameNode = drugs[i].getElementsByTagName('productName')[0];
+            const regCertHolderNameNode = drugs[i].getElementsByTagName('regCertHolderName')[0];
+            const permitNoNode = drugs[i].getElementsByTagName('permitNo')[0];
+
+            if (productNameNode) {
+                const productName = productNameNode.textContent.toLowerCase();
+                if (productName.includes(keyword)) {
+                    const regCertHolderName = regCertHolderNameNode ? regCertHolderNameNode.textContent : 'N/A';
+                    const permitNo = permitNoNode ? permitNoNode.textContent : 'N/A';
+                    const activeIngs = drugs[i].getElementsByTagName('activeIng');
+                    let activeIngsList = '';
+
+                    for (let j = 0; j < activeIngs.length; j++) {
+                        activeIngsList += `<li>${activeIngs[j].textContent}</li>`;
+                    }
+
+                    resultContainer.innerHTML += `
+                        <div class="drug-item">
+                            <h3>${productName}</h3>
+                            <p><strong>Registration Certificate Holder:</strong> ${regCertHolderName}</p>
+                            <p><strong>Permit No:</strong> ${permitNo}</p>
+                            <p><strong>Active Ingredients:</strong></p>
+                            <ul>${activeIngsList}</ul>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        if (resultContainer.innerHTML === '') {
+            resultContainer.innerHTML = '<p>No drugs found matching the keyword.</p>';
+        }
+    } catch (error) {
+        console.error('Error processing drugs:', error);
+    }
 }
 
 

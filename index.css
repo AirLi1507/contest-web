@@ -314,6 +314,7 @@ div.horizontal {
     border-radius: 7px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.35);
     box-sizing: border-box;
+    overflow: scroll;
 }
 
 
@@ -458,3 +459,13 @@ input {
 }
 
 li.txt4 {list-style-type: none;}
+
+.drug-info {
+    margin-top: 20px;
+}
+
+.drug-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
